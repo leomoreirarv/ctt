@@ -3,8 +3,9 @@
     width: calc(50% - 48px);
     margin: 8px;
     padding: 16px;
-    height: calc(200px - 32px);
+    height: calc(15vw - 32px);
     box-shadow: #666666 2px 2px 2px;
+    overflow: hidden;
 }
 
 .vehicle-group-box > .vehicle-image{
@@ -13,13 +14,14 @@
 }
 
 .vehicle-group-box > h3{
-    font-size: 22px;
+    font-size: 2vw;
     margin: 0;
 }
 
 .vehicle-group-box > h3 > span{
     float: right;
-    font-size: 12px;
+    font-size: 1vw;
+    line-height: 2vw;
 }
 
 .vehicle-group-box > .vehicle-information{

@@ -18,7 +18,7 @@ header{
     height: 50px;
     width: 100%;
     background-image: linear-gradient(to top, #ffffff, #efefef 90%, #ffffff 95%);
-    box-shadow: 0 2px 5px #cccccc;
+    box-shadow: 0 1px 15px #666666;
     top: 0;
     z-index: 100;
     position: fixed;
