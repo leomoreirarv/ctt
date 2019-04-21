@@ -6,22 +6,39 @@
     height: calc(15vw - 32px);
     box-shadow: #666666 2px 2px 2px;
     overflow: hidden;
+    position: relative;
 }
 
 .vehicle-group-box > .vehicle-image{
     float: left;
-    margin: 0 8px 8px 0;
+    margin: 0 16px 16px 0;
 }
 
 .vehicle-group-box > h3{
-    font-size: 2vw;
+    font-size: 2.3vw;
     margin: 0;
 }
 
-.vehicle-group-box > h3 > span{
+.vehicle-group-box > h3 > span:first-child{
+    font-size: 1vw;
+    font-weight: 300;
+    color: #aaaaaa;
+}
+
+.vehicle-group-box > h3 > span:last-child{
     float: right;
     font-size: 1vw;
     line-height: 2vw;
+    font-weight: 400;
+    color: rgb(0, 153, 51);
+}
+
+.vehicle-group-box > h3 > span > svg{
+    width: 1w;
+    height: 1vw;
+    vertical-align: middle;
+    fill: rgb(0, 153, 51);
+    margin-right: 8px;
 }
 
 .vehicle-group-box > .vehicle-information{
@@ -35,6 +52,7 @@
 .vehicle-group-box > .vehicle-information svg{
     width: 15px;
     height: 15px;
+    vertical-align: middle;
 }
 
 .vehicle-group-box > .vehicle-information > .vehicle-information__icon-description{
@@ -50,3 +68,27 @@
     margin-left: 8px;
 }
 
+.vehicle-group-box > .vehicle-information__price_vendor{
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    background: purple;
+}
+
+.vehicle-group-box > .vehicle-information__price_vendor > .vehicle-information__logo-vendor {
+    display: table;
+}
+
+.vehicle-group-box > .vehicle-information__price_vendor > .vehicle-information__logo-vendor > svg{
+    background: lime;
+    width: 60px;
+    height: 30px;
+}
+
+.vehicle-group-box > .vehicle-information__price_vendor > .vehicle-information__price{
+    background: red;
+}
+
+.vehicle-group-box > .vehicle-information__price_vendor > .vehicle-information__price > h6{
+    font-size: 2vw;
+}

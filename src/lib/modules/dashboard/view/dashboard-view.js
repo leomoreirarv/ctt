@@ -7,7 +7,7 @@ export default class DashboardView {
     }
 
     init() {
-        this.loadList();
+        this.loadListSortedByVendor();
     }
 
     loadList() {
@@ -17,7 +17,28 @@ export default class DashboardView {
             });
     }
 
-    dashboardGridInit(vehiclesList){
+    loadListSortedByName() {
+        this.dashboardViewModel.getListVehicleSortedByName()
+            .then(vehicleList => {
+                this.dashboardGridInit(vehicleList)
+            });
+    }
+
+    loadListSortedByVendor() {
+        this.dashboardViewModel.getListVehicleSortedByVendor()
+            .then(vehicleList => {
+                this.dashboardGridInit(vehicleList)
+            });
+    }
+
+    loadListSortedByPrice() {
+        this.dashboardViewModel.getListVehicleSortedByPrice()
+            .then(vehicleList => {
+                this.dashboardGridInit(vehicleList)
+            });
+    }
+
+    dashboardGridInit(vehiclesList) {
         const gridBox = document.querySelector("main");
         vehiclesList.map((vehicle) => {
             const vehicleBox = this.vehicleView.createVehicleBox();

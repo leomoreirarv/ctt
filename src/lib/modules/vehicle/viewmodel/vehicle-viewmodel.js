@@ -22,11 +22,13 @@ export default class VechicleViewModel {
                     v.Vehicle['@PassengerQuantity'],
                     v.Vehicle['@TransmissionType'],
                     v.Vehicle.PictureURL,
-                    v.Vehicle.VehMakeModel['@Name']
+                    v.Vehicle.VehMakeModel['@Name'],
+                    vendor.Vendor['@Name']
                 );
                 vehicles.push(vehicle);
             });
         });
+        
         return vehicles;
     }
 }

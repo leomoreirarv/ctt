@@ -1,4 +1,3 @@
-console.log(__dirname + '/src');
 var config = {
     context: __dirname + '/src',
     entry: {

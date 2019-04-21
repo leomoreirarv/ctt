@@ -1,8 +1,14 @@
-import './vehicle.css';
-import gasIcon  from '../../../assets/gas-station.svg'; 
-import suitCaseIcon from '../../../assets/suitcase-with-white-details.svg';
 import carDoorIcon from '../../../assets/car-door.svg';
+import checkedIcon from '../../../assets/correct-symbol.svg';
+import gasIcon from '../../../assets/gas-station.svg';
+import gearShiftIcon from '../../../assets/gearshift.svg';
+import airConditionerIcon from '../../../assets/ice-crystal.svg';
 import passangerIcon from '../../../assets/multiple-users-silhouette.svg';
+import suitCaseIcon from '../../../assets/suitcase-with-white-details.svg';
+import hertzLogo from '../../../assets/hertz.svg';
+import avisLogo from '../../../assets/avis.svg';
+import alamoLogo from '../../../assets/alamo.svg';
+import './vehicle.css';
 
 export default class VehicleView {
     createVehicleBox() {
@@ -13,27 +19,83 @@ export default class VehicleView {
         return groupBox;
     }
 
-    populateVehicleBox(vehicle, box) {
-        console.log(vehicle);
-
+    imageBuilder(box, url, title) {
         const img = box.querySelector(".vehicle-image");
-        img.setAttribute("src", vehicle.pictureURL);
-        img.setAttribute("alt", vehicle.vehMakeModel);
+        img.setAttribute("src", url);
+        img.setAttribute("alt", title);
+    }
 
+    titleBuilder(box, text, status) {
         const title = box.querySelector("h3.vehicle-title");
-        title.innerHTML = vehicle.vehMakeModel + '<span>' + vehicle.status + '</span>';
+        text = text.replace("or similar", "<span>or similar</span>")
+        title.innerHTML = text + '<span>' + checkedIcon + status + '</span>';
+    }
 
+    gasIconBuilder(box, gastype) {
         const gas = box.querySelector(".vehicle-information-gas-label");
-        gas.innerText = vehicle.fuelType;
+        gas.innerText = gastype;
+    }
 
+    baggageIconBuilder(box, baggageQuantity) {
         const baggage = box.querySelector(".vehicle-information-baggage-label");
-        baggage.innerText = vehicle.baggageQuantity;
+        baggage.innerText = baggageQuantity;
+    }
 
+    doorIconBuilder(box, doorCount) {
         const door = box.querySelector(".vehicle-information-door-label");
-        door.innerText = vehicle.doorCount;
-        
+        door.innerText = doorCount;
+    }
+
+    passangerIconBuilder(box, passangerCount) {
         const passanger = box.querySelector(".vehicle-information-passanger-label");
-        passanger.innerText = vehicle.passengerQuantity;
+        passanger.innerText = passangerCount;
+    }
+
+    transmissionIconBuilder(box, transmission) {
+        const gear = box.querySelector(".vehicle-information-gear-label");
+        gear.innerText = transmission;
+
+    }
+
+    airConditionerIconBuilder(box, airCond) {
+        const airConditioner = box.querySelector(".vehicle-information-airconditioner-icon");
+        if (!JSON.parse(airCond)) {
+            airConditioner.setAttribute("style", "display: none");
+        }
+    }
+
+    vendorLogoBuild(box, vendor) {
+        const vendorLogo = box.querySelector(".vehicle-information__logo-vendor");
+        switch (vendor.trim()) {
+            case "HERTZ":
+                vendorLogo.innerHTML = hertzLogo;
+                break;
+            case "ALAMO":
+                vendorLogo.innerHTML = alamoLogo;
+                break;
+            case "AVIS":
+                vendorLogo.innerHTML = avisLogo;
+                break;
+        }
+    }
+
+    priceBuilder(box, price){
+        const boxPrice = box.querySelector(".vehicle-information__price");
+        const priceSplited = price.split(".");
+        boxPrice.innerHTML = '<h6>' + priceSplited[0] + '<span>' + priceSplited[1] + '</span>' + '</h6>';
+    }
+
+    populateVehicleBox(vehicle, box) {
+        this.imageBuilder(box, vehicle.pictureURL, vehicle.vehMakeModel)
+        this.titleBuilder(box, vehicle.vehMakeModel, vehicle.status);
+        this.gasIconBuilder(box, vehicle.fuelType);
+        this.baggageIconBuilder(box, vehicle.baggageQuantity);
+        this.doorIconBuilder(box, vehicle.doorCount);
+        this.passangerIconBuilder(box, vehicle.passengerQuantity);
+        this.transmissionIconBuilder(box, vehicle.transmissionType)
+        this.airConditionerIconBuilder(box, vehicle.airConditionInd);
+        this.vendorLogoBuild(box, vehicle.vendor);
+        this.priceBuilder(box, vehicle.rateTotalAmount);
     }
 
     attachBox(box, destination) {
@@ -41,34 +103,24 @@ export default class VehicleView {
     }
 
     boxTemplate() {
-        return  '<img src="" alt="" class="vehicle-image">' +
-                '<h3 class="vehicle-title"></h3>' +
-                '<div class="vehicle-information">' +
-                    '<div class="vehicle-information__icon-description"><svg>' + gasIcon + '</svg>' +
-                    '<span class="vehicle-information-label vehicle-information-gas-label"></span></div>' +
-                    '<div class="vehicle-information__icon-description"><svg>' + suitCaseIcon + '</svg>' +
-                    '<span class="vehicle-information-label vehicle-information-baggage-label"></span></div>' +
-                    '<div class="vehicle-information__icon-description"><svg>' + carDoorIcon + '</svg>' +
-                    '<span class="vehicle-information-label vehicle-information-door-label"></span></div>' +
-                    '<div class="vehicle-information__icon-description"><svg>' + passangerIcon + '</svg>' +
-                    '<span class="vehicle-information-label vehicle-information-passanger-label"></span></div>' +
-                '</div>';
+        return '<img src="" alt="" class="vehicle-image">' +
+            '<h3 class="vehicle-title"></h3>' +
+            '<div class="vehicle-information">' +
+            '<div class="vehicle-information__icon-description">' + gasIcon +
+            '<span class="vehicle-information-label vehicle-information-gas-label"></span></div>' +
+            '<div class="vehicle-information__icon-description">' + suitCaseIcon +
+            '<span class="vehicle-information-label vehicle-information-baggage-label"></span></div>' +
+            '<div class="vehicle-information__icon-description">' + carDoorIcon +
+            '<span class="vehicle-information-label vehicle-information-door-label"></span></div>' +
+            '<div class="vehicle-information__icon-description">' + passangerIcon +
+            '<span class="vehicle-information-label vehicle-information-passanger-label"></span></div>' +
+            '<div class="vehicle-information__icon-description">' + gearShiftIcon +
+            '<span class="vehicle-information-label vehicle-information-gear-label"></span></div>' +
+            '<div class="vehicle-information__icon-description vehicle-information-airconditioner-icon">' + airConditionerIcon + '</div>' +
+            '</div>' +
+            '<div class="vehicle-information__price_vendor">' +
+                '<div class="vehicle-information__price"></div>' +
+                '<div class="vehicle-information__logo-vendor"></div>'+
+            '</div>';
     }
 }
-
-/**
- * createVehicleBox() {
-        const groupBox = document.createElement("div");
-        groupBox.setAttribute("class", "vehicle-group-box");
-
-        const img = document.createElement("img");
-        img.setAttribute("class", "vehicle-image");
-
-        const title = document.createElement("h3");
-
-        groupBox.appendChild(img);
-        groupBox.appendChild(title);
-
-        return groupBox;
-    }
- */

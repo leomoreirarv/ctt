@@ -14,7 +14,8 @@ export default class Vehicle{
         _passengerQuantity,
         _transmissionType,
         _pictureURL,
-        _vehMakeModel
+        _vehMakeModel,
+        _vendor
     ){
         this.status = _status;
         this.currencyCode = _currencyCode;
@@ -31,5 +32,6 @@ export default class Vehicle{
         this.transmissionType = _transmissionType; 
         this.pictureURL = _pictureURL; 
         this.vehMakeModel = _vehMakeModel; 
+        this.vendor = _vendor;
     }
 }
