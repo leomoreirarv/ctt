@@ -100,16 +100,26 @@ export default class DashboardView {
         }
     }
 
+    formatDate(date){
+        return new Date(date).toLocaleString('en-GB');
+    }
+
     dashboardHeaderTemplate() {
         return `
             <header class="dashboard-header">
                 <div class="dashboard-header__pick-up">
                     <h6>Pick-up</h6>
-                    <h4>${pointerIcon} Dublin  Airport (DUB) - ${calendarIcon} 10:00 22 April, 2019</h4>
+                    <h4>
+                        ${pointerIcon} ${this.dashboardViewModel.dashboard.pickupLocation} - 
+                        ${calendarIcon} ${this.formatDate(this.dashboardViewModel.dashboard.pickupTime)}
+                    </h4>
                 </div>
                 <div class="dashboard-header__drop-off">
                     <h6>Drop-off</h6>
-                    <h4>${pointerIcon} Dublin Airport (DUB) - ${calendarIcon} 10:00 25 April, 2019</h4>
+                    <h4>
+                        ${pointerIcon} ${this.dashboardViewModel.dashboard.returnLocation} - 
+                        ${calendarIcon} ${this.formatDate(this.dashboardViewModel.dashboard.returnTime)}
+                    </h4>
                 </div>
             </header>
             <menu class="dashboard-menu">

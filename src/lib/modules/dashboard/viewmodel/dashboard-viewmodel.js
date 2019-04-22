@@ -1,5 +1,5 @@
 import '../view/dashboard.css';
-
+import DashboardModel from '../model/dashboard-model.js';
 
 export default class DashboardViewModel {
 
@@ -7,14 +7,26 @@ export default class DashboardViewModel {
         this.vehicleService = _vehicleService;
         this.vehicleVieModel = _vehicleViewModel;
     }
-
+    
     init() {
         return new Promise(resolve => {
             this.refreshVehicles().then((response) => {
+                this.dashboard = this.convertToDashboardModel(response);
                 this.vehicleService.saveVehiclesLocalStore(JSON.stringify(this.vehicleVieModel.convertToListVehicle(response)));
                 resolve();
             });
         })
+    }
+
+    convertToDashboardModel(res){
+        const response = JSON.parse(res);
+        const data = response[0].VehAvailRSCore.VehRentalCore;
+
+        
+        return new DashboardModel(data["@PickUpDateTime"], 
+                                    data["@ReturnDateTime"], 
+                                    data.PickUpLocation["@Name"], 
+                                    data.ReturnLocation["@Name"]);
     }
 
     refreshVehicles() {
