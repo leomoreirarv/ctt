@@ -1,4 +1,4 @@
-import '../view/dashboard.css';
+require("babel-polyfill");
 import DashboardModel from '../model/dashboard-model.js';
 
 export default class DashboardViewModel {

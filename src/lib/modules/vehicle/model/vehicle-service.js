@@ -1,5 +1,3 @@
-import Vehicle from './vehicle.js';
-
 export default class VehicleService {
     getAllVehicles(sucess, error) {
         let xhr = new XMLHttpRequest();

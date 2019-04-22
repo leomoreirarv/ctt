@@ -1,6 +1,6 @@
 import '../styles/app.css';
 
-import VehicleService from './modules/vehicle/model/vehicles-service.js';
+import VehicleService from './modules/vehicle/model/vehicle-service.js';
 import VehicleViewModel from './modules/vehicle/viewmodel/vehicle-viewmodel.js';
 import VehicleView from './modules/vehicle/view/vehicle-view.js';
 
