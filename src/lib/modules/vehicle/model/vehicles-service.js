@@ -10,4 +10,12 @@ export default class VehicleService {
         xhr.open('GET', 'http://www.cartrawler.com/ctabe/cars.json', true);
         xhr.send();
     }
+
+    saveVehiclesLocalStore(vehicles){
+        localStorage.setItem("vehicles", vehicles);
+    }
+
+    getVehiclesFromLocalStorage(){
+        return localStorage.getItem("vehicles");
+    }
 }

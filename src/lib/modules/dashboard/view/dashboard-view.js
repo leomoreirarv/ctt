@@ -11,7 +11,8 @@ export default class DashboardView {
         this.activatedFilter = "";
     }
 
-    init() {
+    async init() {
+        await this.dashboardViewModel.init();
         this.loadListSortedByPrice();
         this.startClickListner();
     }
@@ -86,16 +87,16 @@ export default class DashboardView {
     }
 
     activeFilterButtom(filter) {
-        switch(filter) {
-            case "price" :
+        switch (filter) {
+            case "price":
                 document.querySelector("#sortByPriceButtom").classList.add("activated");
-            break;
-            case "vendor" :
+                break;
+            case "vendor":
                 document.querySelector("#sortByVendorButtom").classList.add("activated");
-            break;
-            case "name" :
+                break;
+            case "name":
                 document.querySelector("#sortByVehicleNameButtom").classList.add("activated");
-            break;
+                break;
         }
     }
 
