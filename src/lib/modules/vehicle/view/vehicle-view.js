@@ -28,7 +28,7 @@ export default class VehicleView {
     titleBuilder(box, text, status) {
         const title = box.querySelector("h3.vehicle-title");
         text = text.replace("or similar", "<span>or similar</span>")
-        title.innerHTML = text + '<span>' + checkedIcon + status + '</span>';
+        title.innerHTML = `${text}<span>${checkedIcon} ${status}</span>`;
     }
 
     gasIconBuilder(box, gastype) {
@@ -79,10 +79,10 @@ export default class VehicleView {
         }
     }
 
-    priceBuilder(box, price){
+    priceBuilder(box, price, currencyCode){
         const boxPrice = box.querySelector(".vehicle-information__price");
         const priceSplited = price.split(".");
-        boxPrice.innerHTML = '<h6>' + priceSplited[0] + '<span>' + priceSplited[1] + '</span>' + '</h6>';
+        boxPrice.innerHTML = `<h6>${priceSplited[0]}<span>.${priceSplited[1]}</span> <span>${currencyCode}</span></h6>`;
     }
 
     populateVehicleBox(vehicle, box) {
@@ -95,7 +95,7 @@ export default class VehicleView {
         this.transmissionIconBuilder(box, vehicle.transmissionType)
         this.airConditionerIconBuilder(box, vehicle.airConditionInd);
         this.vendorLogoBuild(box, vehicle.vendor);
-        this.priceBuilder(box, vehicle.rateTotalAmount);
+        this.priceBuilder(box, vehicle.rateTotalAmount, vehicle.currencyCode);
     }
 
     attachBox(box, destination) {
@@ -103,24 +103,39 @@ export default class VehicleView {
     }
 
     boxTemplate() {
-        return '<img src="" alt="" class="vehicle-image">' +
-            '<h3 class="vehicle-title"></h3>' +
-            '<div class="vehicle-information">' +
-            '<div class="vehicle-information__icon-description">' + gasIcon +
-            '<span class="vehicle-information-label vehicle-information-gas-label"></span></div>' +
-            '<div class="vehicle-information__icon-description">' + suitCaseIcon +
-            '<span class="vehicle-information-label vehicle-information-baggage-label"></span></div>' +
-            '<div class="vehicle-information__icon-description">' + carDoorIcon +
-            '<span class="vehicle-information-label vehicle-information-door-label"></span></div>' +
-            '<div class="vehicle-information__icon-description">' + passangerIcon +
-            '<span class="vehicle-information-label vehicle-information-passanger-label"></span></div>' +
-            '<div class="vehicle-information__icon-description">' + gearShiftIcon +
-            '<span class="vehicle-information-label vehicle-information-gear-label"></span></div>' +
-            '<div class="vehicle-information__icon-description vehicle-information-airconditioner-icon">' + airConditionerIcon + '</div>' +
-            '</div>' +
-            '<div class="vehicle-information__price_vendor">' +
-                '<div class="vehicle-information__price"></div>' +
-                '<div class="vehicle-information__logo-vendor"></div>'+
-            '</div>';
+        return `
+            <div class="vehicle-info-group">
+                <div class="vehicle-info-group__header">
+                    <img src="" alt="" class="vehicle-image">
+                    <div class="vehicle-info-group__header__description">
+                        <h3 class="vehicle-title"></h3>
+                        <div class="vehicle-information__icon-group">
+                            <div class="vehicle-information__icon-description">
+                                ${gasIcon}<span class="vehicle-information-label vehicle-information-gas-label"></span>
+                            </div>
+                            <div class="vehicle-information__icon-description">
+                                ${suitCaseIcon}<span class="vehicle-information-label vehicle-information-baggage-label"></span>
+                            </div>
+                            <div class="vehicle-information__icon-description">
+                                ${carDoorIcon}<span class="vehicle-information-label vehicle-information-door-label"></span>
+                            </div>
+                            <div class="vehicle-information__icon-description">
+                                ${passangerIcon}<span class="vehicle-information-label vehicle-information-passanger-label"></span>
+                            </div>
+                            <div class="vehicle-information__icon-description">
+                                ${gearShiftIcon}<span class="vehicle-information-label vehicle-information-gear-label"></span>
+                            </div>
+                            <div class="vehicle-information__icon-description vehicle-information-airconditioner-icon">
+                                ${airConditionerIcon}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="vehicle-info-group__footer">
+                    <div class="vehicle-information__price"></div>
+                    <div class="vehicle-information__logo-vendor"></div>
+                </div>
+            </div>
+            `;
     }
 }
