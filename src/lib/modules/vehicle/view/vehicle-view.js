@@ -9,12 +9,14 @@ import hertzLogo from '../../../assets/hertz.svg';
 import avisLogo from '../../../assets/avis.svg';
 import alamoLogo from '../../../assets/alamo.svg';
 import './vehicle.css';
+import DetailsView from '../../details/view/details-view';
 
 export default class VehicleView {
+    
     createVehicleBox() {
         const groupBox = document.createElement('div');
         groupBox.setAttribute("class", "vehicle-group-box");
-
+        
         groupBox.innerHTML = this.boxTemplate();
         return groupBox;
     }
@@ -85,6 +87,17 @@ export default class VehicleView {
         boxPrice.innerHTML = `<h6>${priceSplited[0]}<span>.${priceSplited[1]}</span> <span>${currencyCode}</span></h6>`;
     }
 
+    clickBoxHandle(box, vehicle){
+        box.addEventListener("click", ()=> {
+            const detailsView = new DetailsView(vehicle);
+            window.history.pushState(detailsView, "Vehicle Detail", "detail.html");
+            window.onpopstate = () => {
+                window.location = "index.html";
+            }
+            detailsView.init();
+        })
+    }
+
     populateVehicleBox(vehicle, box) {
         this.imageBuilder(box, vehicle.pictureURL, vehicle.vehMakeModel)
         this.titleBuilder(box, vehicle.vehMakeModel, vehicle.status);
@@ -96,6 +109,7 @@ export default class VehicleView {
         this.airConditionerIconBuilder(box, vehicle.airConditionInd);
         this.vendorLogoBuild(box, vehicle.vendor);
         this.priceBuilder(box, vehicle.rateTotalAmount, vehicle.currencyCode);
+        this.clickBoxHandle(box, vehicle);
     }
 
     attachBox(box, destination) {

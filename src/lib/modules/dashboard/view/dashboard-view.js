@@ -12,6 +12,8 @@ export default class DashboardView {
     }
 
     async init() {
+        window.history.pushState(this, "Vehicle Dashboard", "index.html");
+    
         await this.dashboardViewModel.init();
         this.loadListSortedByPrice();
         this.startClickListner();
