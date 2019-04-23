@@ -5,9 +5,9 @@ import pointerIcon from '../../../assets/placeholder.svg';
 const gridBox = document.querySelector("main");
 
 export default class DashboardView {
-    constructor(_vehicleView, _dashboardViewModel) {
+    constructor(_vehicleViewFactory, _dashboardViewModel) {
         this.dashboardViewModel = _dashboardViewModel;
-        this.vehicleView = _vehicleView;
+        this.vehicleViewFactory = _vehicleViewFactory;
         this.activatedFilter = "";
     }
 
@@ -47,9 +47,9 @@ export default class DashboardView {
         this.dashboardAttachHeader();
         this.activeFilterButtom(this.activatedFilter);
         vehiclesList.map((vehicle) => {
-            const vehicleBox = this.vehicleView.createVehicleBox();
-            this.vehicleView.populateVehicleBox(vehicle, vehicleBox);
-            this.vehicleView.attachBox(vehicleBox, gridBox);
+            const vehicleBox = this.vehicleViewFactory.createVehicleBox();
+            this.vehicleViewFactory.populateVehicleBox(vehicle, vehicleBox);
+            this.vehicleViewFactory.attachBox(vehicleBox, gridBox);
         });
     }
 

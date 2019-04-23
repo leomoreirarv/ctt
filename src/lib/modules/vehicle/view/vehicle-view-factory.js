@@ -8,10 +8,10 @@ import suitCaseIcon from '../../../assets/suitcase-with-white-details.svg';
 import hertzLogo from '../../../assets/hertz.svg';
 import avisLogo from '../../../assets/avis.svg';
 import alamoLogo from '../../../assets/alamo.svg';
-import './vehicle.css';
 import DetailsView from '../../details/view/details-view';
+import './vehicle.css';
 
-export default class VehicleView {
+export default class VehicleViewFactory {
     
     createVehicleBox() {
         const groupBox = document.createElement('div');
