@@ -14,5 +14,13 @@ describe("Vehicle Service Module", () => {
         expect(retrived).toBe(data);
     });
 
-    //TODO test the HTTP request
+    it("Should call XMLHttpRequest methods when getting vehicles", () => {
+        spyOn(XMLHttpRequest.prototype, 'open').and.callThrough(); // Jasmine 2.x
+        spyOn(XMLHttpRequest.prototype, 'send');
+
+        service.getAllVehicles(()=>{}, ()=>{});
+
+        expect(XMLHttpRequest.prototype.open).toHaveBeenCalled();
+        expect(XMLHttpRequest.prototype.send).toHaveBeenCalled();
+    });
 });

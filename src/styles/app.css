@@ -10,7 +10,7 @@ html {
 
 body {
     background: #cccccc;
-    margin-bottom: 50px
+    margin-bottom: calc(50px + 32px);
 }
 
 body>header {

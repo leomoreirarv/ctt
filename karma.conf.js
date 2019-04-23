@@ -83,7 +83,7 @@ module.exports = function(config) {
       preprocessors: {
         //add webpack as preprocessor to support require() in test-suits .js files
         '*spec.js': ['webpack'],
-        // './src/lib/**/*.js': ['coverage']
+        // './src/lib/**/*.js|!./src/lib/**/*spec.js': ['coverage']
       },
       webpackMiddleware: {
         //turn off webpack bash output when run the tests
