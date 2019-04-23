@@ -1,7 +1,7 @@
 # CarTrawler Tech Test
 
 This is a tech test of Cartrawler by Leonardo Moreira. 
-That project consists in a web application, SPA, responsible using Vanilla.js (ES2015), HTML5 and CSS3.
+That project consists in a web application, SPA (Single page application), responsible (mobile) developed with Vanilla.js (ES2015), HTML5 and CSS3.
 
 ## NPM Commands
 #### Installation
